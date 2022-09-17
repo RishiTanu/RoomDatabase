@@ -27,10 +27,9 @@ abstract class ContactDataBase : RoomDatabase(){
         @Volatile //just make sure all thread will get updated value from instance
         private var INSTANCE : ContactDataBase? = null
 
-
         fun  getDataBase(context: Context) : ContactDataBase{
             if(INSTANCE==null){
-                synchronized(this){  //when multiple thread wil create db object it will prevent it and onlu one use
+                synchronized(this){  //when multiple thread wil create db object it will prevent it and onlu one database object here created
                     INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
                         ContactDataBase::class.java,

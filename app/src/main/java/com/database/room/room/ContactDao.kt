@@ -7,13 +7,14 @@ import androidx.room.*
 @Dao
 interface ContactDao {
 
-    @Insert()
+    //when duplicate records will add it wil replace that records...
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertContact(contact: Contact)
 
-    @Delete()
+    @Delete
     suspend fun deleteContact(contact: Contact)
 
-    @Update()
+    @Update
     suspend fun updateContact(contact: Contact)
 
     @Query("SELECT * FROM contact")
